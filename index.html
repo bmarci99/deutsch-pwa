@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="de" data-theme="klassisch" data-scheme="auto" data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deutsch Detektiv</title>
+<meta name="description" content="German grammar &amp; vocabulary trainer A1–B2 — offline.">
+<meta name="theme-color" content="#f5f5f7">
+<meta name="color-scheme" content="light dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Detektiv">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="stylesheet" href="css/app.css">
+<script>
+  // apply the saved theme before first paint (no flash)
+  (function () {
+    try {
+      var s = JSON.parse(localStorage.getItem('dd.v1') || '{}').settings || {};
+      var r = document.documentElement;
+      r.dataset.theme = s.theme === 'detektiv' ? 'detektiv' : 'klassisch';
+      r.dataset.scheme = s.colorScheme || 'auto';
+      var dark = s.colorScheme === 'dark' || (s.colorScheme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+      r.dataset.mode = dark ? 'dark' : 'light';
+    } catch (e) { /* defaults */ }
+  })();
+</script>
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <div id="app" class="app">
+    <main id="view" class="view" tabindex="-1" aria-live="polite">
+      <div class="boot">
+        <div class="boot-logo" aria-hidden="true"></div>
+        <p class="boot-text">Deutsch Detektiv lädt …</p>
+      </div>
+    </main>
+    <nav id="tabbar" class="tabbar" aria-label="Hauptnavigation"></nav>
+  </div>
+  <div id="umlautbar" class="umlautbar" role="toolbar" aria-label="Umlaute" hidden></div>
+  <div id="overlay-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="assertive"></div>
+  <noscript>Deutsch Detektiv braucht JavaScript.</noscript>
+</body>
+</html>
